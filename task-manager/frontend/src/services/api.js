@@ -46,7 +46,7 @@ export async function deleteTask(taskId) {
 }
 
 export async function toggleComplete(taskId) {
-    const resp= await fetch(`${BASE}/${taskId}/toggle-complete`, {
+    const resp= await fetch(`${BASE}/${taskId}/toggle`, {
         method: 'PATCH',
     });
     if(!resp.ok){

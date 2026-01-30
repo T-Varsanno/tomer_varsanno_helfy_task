@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { getAllTasks } from './services/api';
+import TaskForm from './components/TaskForm';
+import TaskFilter from './components/TaskFilter';
+import TaskList from './components/TaskList';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('all');
+
+  async function getTasks() {
+    const data = await getAllTasks();
+    setTasks(data);
+  }
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'completed') return task.completed;
+    if (filter === 'pending') return !task.completed;
+    return true;
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div >
+      <h1>Task Manager</h1>
 
-export default App
+      <TaskForm onCreated={getTasks} />
+
+      <TaskFilter value={filter} onChange={setFilter} />
+
+      <TaskList tasks={filteredTasks} onChange={getTasks} />
+    </div>
+  );
+}
