@@ -36,7 +36,7 @@ router.put('/:id', (req, res) => {
         createdAt:existing.createdAt,
         priority:req.body.priority,
     }
-    tasks[taskId]= updated;
+    tasks[index]= updated;
     res.status(200).json(updated);
 });
 
