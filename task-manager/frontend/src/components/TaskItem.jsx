@@ -23,34 +23,31 @@ export default function TaskItem({task, onChange}) {
         }
     }
     return (
-       <div
-        className={
-            "task-item " +
-            (task.completed ? "completed-task " : "pending-task ") +
-            (expanded ? "expanded" : "")
-        }
-        >
-        <span
-            className={task.completed ? "completed" : ""}
-            onClick={() => setExpanded(!expanded)}
-        >
-            {task.title}
-        </span>
+       <div className={`task-item ${task.completed ? 'completed-task' : 'pending-task'} ${expanded ? 'expanded' : ''}`}>
+  
+  <div 
+    className="task-content"
+        onClick={() => setExpanded(!expanded)}
+    >
+        <div className="task-title">
+        {task.title}
+        </div>
 
         {expanded && (
-            <div className="task-details">
+        <div className="task-details">
             <div>{task.description}</div>
             <div>Priority: {task.priority}</div>
-            </div>
-        )}
-    
-        <div className="task-actions">
-            <button onClick={doToggle}>
-                {task.completed ? "Undo" : "Complete"}
-            </button>
-
-            <button onClick={doDelete}>Delete</button>
-            </div>
         </div>
+        )}
+    </div>
+
+    <div className="task-actions">
+        <button onClick={doToggle}>
+        {task.completed ? 'Undo' : 'Complete'}
+        </button>
+        <button onClick={doDelete}>Delete</button>
+    </div>
+
+    </div>
     )
 }

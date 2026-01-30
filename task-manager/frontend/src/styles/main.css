@@ -15,17 +15,67 @@ h1 {
 }
 
 .task-item {
-  background: #ffffff;
-  border: 1px solid #ddd;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  transition: box-shadow 0.2s ease;
-
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.task-content {
+  flex: 1;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+
+.task-content:hover {
+  background: #f7f7f7;
+}
+
+
+.task-item.expanded .task-content {
+  background: #eef6ff;
+}
+
+.task-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+
+.task-details {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 6px;
+}
+
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  align-items: center;
+}
+
+
+.pending-task {
+  border-left: 10px solid #e2391f;
+}
+
+.completed-task {
+  border-left: 10px solid #5cb85c;
+  opacity: 0.8;
+}
+.task-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;   /* ⬅ prevents it from stealing space */
 }
 .pending-task {
   border-left: 30px solid #e2391f; 
