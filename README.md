@@ -63,37 +63,37 @@ Base URL:API Documentation
 Endpoints:
 
 
-GET /api/tasks
+-GET /api/tasks
 
 Returns all tasks.
 
 
-POST /api/tasks
+-POST /api/tasks
 
 Create a new task.
 
 
-PUT /api/tasks/:id
+-PUT /api/tasks/:id
 
 Update an existing task.
 
 
-DELETE /api/tasks/:id
+-DELETE /api/tasks/:id
 
 Delete a task.
 
 
-PATCH /api/tasks/:id/toggle
+-PATCH /api/tasks/:id/toggle
 
 Toggle task completion status.
 
 
 ### Time Spent (Approximate)
 
-Project setup & backend API: ~1.5 hours
+-Project setup & backend API: ~1.5 hours
 
-Frontend components & API integration: ~2 hours
+-Frontend components & API integration: ~2 hours
 
-Styling, debugging, and documentation: ~30 minutes
+-Styling, debugging, and documentation: ~30 minutes
 
-Total: ~4 hours
+-Total: ~4 hours
