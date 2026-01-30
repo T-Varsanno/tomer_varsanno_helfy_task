@@ -4,19 +4,33 @@ const router = express.Router();
 let tasks= [];
 let currentId= 1;
 
+
+function prioValid(p){
+    return p==='low' || p==='medium' || p==='high';
+}
+function stringValid(s){
+    return typeof s === 'string' && s.length > 0;
+}
+
 router.get('/',(req, res ) =>{
-    res.json(tasks);
+    res.status(200).json(tasks);
 });
 
 router.post('/', (req, res) => {
+    const title= req.body.title;
+    const description= req.body.description;
+    const priority= req.body.priority;
 
+    if(!stringValid(title) || !stringValid(description) || !prioValid(priority)){
+        return res.status(400).json({error: 'Invalid strings in data'});
+    }
     const newTask= {
     id: currentId++, 
-    title: req.body.title,
-    description: req.body.description,
+    title: title,
+    description: description,
     completed: false,
     createdAt: new Date(),
-    priority: req.body.priority,
+    priority: priority,
     };
     tasks.push(newTask);
     res.status(201).json(newTask);
@@ -28,13 +42,20 @@ router.put('/:id', (req, res) => {
     const index= tasks.findIndex(t => t.id === taskId);
     const existing= tasks[index];
 
+    const title= req.body.title;
+    const description= req.body.description;
+    const priority= req.body.priority;
+    if(!stringValid(title) || !stringValid(description) || !prioValid(priority)){
+        return  res.status(400).json({error: 'Invalid strings in data'});
+    }
+
     const updated = {
         id: existing.id,
-        title:req.body.title,
-        description:req.body.description,
+        title:title,
+        description:description,
         completed:req.body.completed,
         createdAt:existing.createdAt,
-        priority:req.body.priority,
+        priority:priority,
     }
     tasks[index]= updated;
     res.status(200).json(updated);
