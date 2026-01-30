@@ -50,6 +50,7 @@ Navigate to the frontend folder:
 cd task-manager/frontend
 
 npm install
+
 npm run dev
 
 The frontend runs on:
