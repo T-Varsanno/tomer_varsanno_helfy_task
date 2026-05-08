@@ -24,14 +24,16 @@ export default function App() {
   });
 
   return (
-    <div >
-      <h1>Task Manager</h1>
+    <div className = "app">
+      <div className="container">
+        <h1>Task Manager</h1>
 
-      <TaskForm onCreated={getTasks} />
+        <TaskForm onCreated={getTasks} />
 
-      <TaskFilter value={filter} onChange={setFilter} />
+        <TaskFilter value={filter} onChange={setFilter} />
 
-      <TaskList tasks={filteredTasks} onChange={getTasks} />
+        <TaskList tasks={filteredTasks} onChange={getTasks} />
+      </div>
     </div>
   );
 }
